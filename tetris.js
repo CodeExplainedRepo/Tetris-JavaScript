@@ -27,7 +27,7 @@ for( r = 0; r <ROW; r++){
 }
 
 // draw the board
-function drawBoard(){
+const drawBoard = () => {
     for( r = 0; r <ROW; r++){
         for(c = 0; c < COL; c++){
             drawSquare(c,r,board[r][c]);
@@ -51,7 +51,7 @@ const PIECES = [
 
 // generate random pieces
 
-function randomPiece(){
+const randomPiece = () => {
     let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
     return new Piece( PIECES[r][0],PIECES[r][1]);
 }
@@ -236,9 +236,7 @@ Piece.prototype.collision = function(x,y,piece){
 
 // CONTROL the piece
 
-document.addEventListener("keydown",CONTROL);
-
-function CONTROL(event){
+const CONTROL = (event) => {
     if(event.keyCode == 37){
         p.moveLeft();
         dropStart = Date.now();
@@ -253,11 +251,13 @@ function CONTROL(event){
     }
 }
 
+document.addEventListener("keydown",CONTROL);
+
 // drop the piece every 1sec
 
 let dropStart = Date.now();
 let gameOver = false;
-function drop(){
+const drop = () => {
     let now = Date.now();
     let delta = now - dropStart;
     if(delta > 1000){
